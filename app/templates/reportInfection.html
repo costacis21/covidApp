@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+ {% block content %}
+  {% with messages = get_flashed_messages() %}
+   {% if messages %}
+    <ul>
+     {% for message in messages %}
+       <li>{{ message }} </li>
+     {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<h1 class="h1 row justify-content-center">Report infection of user</h1>
+<br>
+<form action="" method="post" name="task">
+  {{ form.hidden_tag()}}
+  <div class="row justify-content-center">
+    <div class="col col-lg-2">
+      <div class="form-group" >
+        <label for="exampleFormControlTextarea1">Name</label>
+        {{ form.name }}
+        {% for error in form.name.errors %}
+        [{{ error }}]
+        {% endfor %} 
+        <small class="form-text text-muted">Your first and last name</small>
+      </div>  
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col col-lg-2">
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Phone number</label>
+        {{ form.phone }}
+        {% for error in form.phone.errors %}
+        [{{ error }}]
+        {% endfor %} 
+        <small class="form-text text-muted">Your phone number</small>
+
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col col-lg-2">
+        <input type="submit" class="btn btn-primary" value="Add User">
+        {%if message!=None %}
+        <script>alert("No user found")</script>
+        {% endif %}
+      </div>
+    </div>
+</form>
+{% endblock %}
